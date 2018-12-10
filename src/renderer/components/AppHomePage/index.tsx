@@ -10,9 +10,11 @@ class AppHomePage extends React.Component<{ appState:StoreRoot }, {}> {
   }
 
   public render() {
+    const { serverHandler } = this.props.appState;
     return (
       <div>
         <h2>Ghost Rest</h2>
+        <button onClick={serverHandler.startServer}>Start</button>
       </div>
     );
   }

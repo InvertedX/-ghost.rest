@@ -6,11 +6,8 @@ import {
   R2M_START_SERVER,
   R2M_STOP_SEVER,
 } from "../../shared/ipc.events";
-import { IRequest, IResponse } from "../proxy/index";
-import ProxyHandler, {
-  IReqResReceivers,
-  IServerOptions,
-} from "../ProxyHandler";
+import { IRequest, IResponse, IServerOptions } from "../../shared/models";
+import ProxyHandler, { IReqResReceivers } from "../ProxyHandler";
 import { AbstractStoreHandler } from "./AbstractStoreHandler";
 
 class ServerStore extends AbstractStoreHandler {
