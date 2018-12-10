@@ -3,7 +3,8 @@ import { app } from "electron";
 // tslint:disable-next-line:no-implicit-dependencies
 import { Application } from "express";
 import * as http from "http";
-import { IProxyOptions, IRequest, IResponse, proxy } from "./proxy";
+import { IRequest, IResponse, IServerOptions } from "../shared/models";
+import { IProxyOptions, proxy } from "./proxy";
 
 // tslint:disable-next-line:no-var-requires
 const path = require("path");
@@ -11,10 +12,6 @@ const path = require("path");
 export interface IReqResReceivers {
   request:(req:any) => void;
   response:(res:any) => void;
-}
-export interface IServerOptions {
-  url:string;
-  port:number;
 }
 class ProxyHandler {
   private httpServer?:http.Server;

@@ -5,6 +5,7 @@ import { Application, Request, Response } from "express";
 import express = require("express");
 import jetPack = require("fs-jetpack");
 import path = require("path");
+import { IRequest, IResponse } from "../../shared/models";
 import resolver from "./request_resolver";
 
 // tslint:disable-next-line:no-var-requires
@@ -15,21 +16,6 @@ const app:Application = express();
 
 interface IProxyRequest extends Request {
   id:string;
-}
-
-export interface IRequest extends Request {
-  id:string;
-  size:string;
-  method:string;
-  status:number;
-  url:string;
-}
-export interface IResponse extends Response {
-  headers:string[];
-  id:string;
-  method:string;
-  size:string;
-  url:string;
 }
 
 export interface IProxyOptions {
