@@ -59,7 +59,7 @@
     "asarlist": "asar list ./dist/win-unpacked/resources/app.asar"
   },
   "build": {
-    "appId": "com.example.electron-react-typescript-mobx",
+    "appId": "com.example.app",
     "productName": "Sample App",
     "copyright": "Copyright © year ${author}",
     "forceCodeSigning": false,
