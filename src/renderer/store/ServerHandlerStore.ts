@@ -9,6 +9,9 @@ class ServerHandlerStore extends AbstractStore {
 
   constructor() {
     super();
+    this.startServer = this.startServer.bind(this);
+    this.stopServer = this.startServer.bind(this);
+    this.setTargetServer = this.startServer.bind(this);
   }
 
   @action

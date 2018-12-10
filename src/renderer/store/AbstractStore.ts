@@ -60,17 +60,25 @@ abstract class AbstractStore {
     ipc:string,
     handler:((ipc:string, event:Event, arg:any) => void),
   ) => {
-    if (ipcMainRegistered[ipc] === true) {
-      throw new Error("duplicate channel definitions for <" + ipc + ">");
-    }
     if (ipc.indexOf("r2m-") !== 0) {
       throw new Error("invalid channel name for <" + ipc + ">");
     }
     if (ipc.substr(-"-reply".length) === "-reply") {
       throw new Error("invalid channel name for <" + ipc + ">");
     }
-    ipcMainRegistered[ipc] = true;
     ipcRenderer.on(ipc + "-reply", (event:Event, arg:any) => {
+      handler(ipc, event, arg);
+    });
+  }
+  public onM2R = (
+    ipc:string,
+    handler:((ipc:string, event:Event, arg:any) => void),
+  ) => {
+    if (ipc.indexOf("M2R-") !== 0) {
+      throw new Error("invalid channel name for <" + ipc + ">");
+    }
+    ipcMainRegistered[ipc] = true;
+    ipcRenderer.on(ipc, (event:Event, arg:any) => {
       handler(ipc, event, arg);
     });
   }
