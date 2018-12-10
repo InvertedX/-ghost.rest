@@ -1,0 +1,32 @@
+﻿<html>
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="content-type" content="text/html; charset=UTF8">
+</head>
+
+<body>
+  <div id="app-root"></div>
+  <script>
+    //
+    // Check if we're running in Electron and if so do a bit of cleanup
+    //
+    if (typeof (require) === "undefined") {
+      window.isInElectronRenderer = false;
+    } else {
+      window.isInElectronRenderer = true;
+      // see https://electron.atom.io/docs/faq/ 
+      // we are using this to avoid issues described in https://stackoverflow.com/a/38556376
+      window.nodeRequire = require;
+      //delete window.require;
+      delete window.exports;
+      delete window.module;
+    }
+  </script>
+  
+  <script src="electron.js"></script>
+</body>
+
+</html>

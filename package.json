@@ -1,0 +1,100 @@
+{
+  "name": "ghost_rest_http_debug_proxy",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/main/index.js",
+  "dependencies": {
+    "@types/electron": "^1.6.10",
+    "busboy": "^0.2.14",
+    "fs-jetpack": "^2.2.0",
+    "mobx": "^5.7.0",
+    "mobx-react": "^5.4.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-router-dom": "^4.3.1"
+  },
+  "devDependencies": {
+    "@types/content-type": "^1.1.2",
+    "@types/express": "^4.16.0",
+    "@types/node": "10.12.12",
+    "@types/react": "16.7.13",
+    "@types/react-dom": "16.0.11",
+    "@types/react-router-dom": "4.3.1",
+    "awesome-typescript-loader": "5.2.1",
+    "concurrently": "4.1.0",
+    "cross-env": "5.2.0",
+    "css-loader": "2.0.0",
+    "devtron": "1.4.0",
+    "electron": "3.0.10",
+    "electron-builder": "20.38.2",
+    "electron-devtools-installer": "2.2.4",
+    "file-loader": "2.0.0",
+    "html-webpack-plugin": "3.2.0",
+    "react-hot-loader": "4.3.12",
+    "source-map-loader": "0.2.4",
+    "style-loader": "0.23.1",
+    "tslint": "5.11.0",
+    "tslint-config-standard": "8.0.1",
+    "tslint-loader": "3.5.4",
+    "tslint-react": "3.6.0",
+    "typescript": "^3.2.2",
+    "typings-for-css-modules-loader": "1.7.0",
+    "webpack": "4.27.1",
+    "webpack-cli": "3.1.2",
+    "webpack-dev-middleware": "3.4.0",
+    "webpack-dev-server": "3.1.10",
+    "webpack-hot-middleware": "2.24.3"
+  },
+  "scripts": {
+    "start": "npm run pack-dev && concurrently \"npm run start-server\" \"npm run start-electron\"",
+    "pack-dev": "tsc src/main/index.ts -sourcemap --lib es6,dom,scripthost && webpack --target web --config webpack.config.js && webpack --config webpack.config.js  --mode development",
+    "pack-prod": "tsc src/main/index.ts -sourcemap --lib es6,dom,scripthost && webpack --target web --config webpack.production.config.js && webpack --config webpack.production.config.js",
+    "start-server": "cross-env NODE_ENV=development webpack-dev-server  --mode development",
+    "start-electron": "cross-env NODE_ENV=development electron src/main/index --enable-logging --remote-debugging-port=9222 --debug-brk=5858",
+    "build-debug": "npm run pack-dev && electron-builder --dir",
+    "build-win": "npm run pack-prod && electron-builder --win",
+    "build-mac": "npm run pack-prod && electron-builder --mac",
+    "build-linux": "npm run pack-prod && electron-builder --linux",
+    "build": "npm run build-debug",
+    "asarlist": "asar list ./dist/win-unpacked/resources/app.asar"
+  },
+  "build": {
+    "appId": "com.example.electron-react-typescript-mobx",
+    "productName": "Sample App",
+    "copyright": "Copyright © year ${author}",
+    "forceCodeSigning": false,
+    "directories": {
+      "buildResources": "build",
+      "output": "electron"
+    },
+    "files": [
+      "node_modules/**",
+      "src/main/**/*.js",
+      "dist/electron.html",
+      "dist/electron.js",
+      "dist/index.html",
+      "dist/site.js",
+      "static/**",
+      "LICENSE"
+    ],
+    "asarUnpack": [
+      "static/preload.js"
+    ],
+    "extraResources": [],
+    "extraFiles": [],
+    "mac": {},
+    "mas": {},
+    "dmg": {},
+    "pkg": {},
+    "win": {
+      "target": "portable"
+    },
+    "nsis": {},
+    "nsisWeb": {},
+    "portable": {},
+    "appx": {},
+    "squirrelWindows": {}
+  },
+  "author": "Sarath kumar (@_sarath_kumar)",
+  "license": "ISC"
+}

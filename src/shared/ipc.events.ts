@@ -1,0 +1,5 @@
+export const R2M_START_SERVER = "R2M-START-SERVER";
+export const R2M_STATUS = "R2M-STATUS";
+export const R2M_STOP_SEVER = "R2M-STOP-SERVER";
+export const M2R_ON_REQUEST = "M2R-ON-REQUEST";
+export const M2R_ON_RESPONSE = "M2R-ON-RESPONSE";
