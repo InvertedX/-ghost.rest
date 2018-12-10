@@ -11,7 +11,7 @@
         "target": "es6",
         "jsx": "react",
         "allowJs": false,
-        "strict": true,
+        "strict": false,
         "alwaysStrict": true,
         "strictNullChecks": true,
         "typeRoots": ["node_modules/@types/"],
