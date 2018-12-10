@@ -1,4 +1,5 @@
 import { RequestStore } from "./RequestStore";
+import { ServerHandlerStore } from "./ServerHandlerStore";
 
 class StoreRoot {
   //
@@ -8,6 +9,7 @@ class StoreRoot {
   // multiple child stores
   //
   public requestStore = new RequestStore();
+  public serverHandler = new ServerHandlerStore();
   public counter = {};
 }
 
