@@ -9,7 +9,6 @@ export interface IRequest extends Request {
   url:string;
 }
 export interface IResponse extends Response {
-  headers:string[];
   id:string;
   method:string;
   size:string;

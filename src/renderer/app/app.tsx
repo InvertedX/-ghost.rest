@@ -4,8 +4,8 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { HashRouter, Route } from "react-router-dom";
 import { AppHomePage } from "../components/AppHomePage";
+import "../scss/app.global.scss";
 import { StoreRoot } from "../store";
-// import "../../shared/app/app.global.scss";
 
 configure({
   enforceActions: "observed",
