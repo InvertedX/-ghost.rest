@@ -1,7 +1,7 @@
 {
   "extends": [
     "tslint-config-standard",
-    "tslint:latest", 
+    "tslint:latest",
     "tslint-react"
   ],
   "rules": {
@@ -10,6 +10,7 @@
     "max-line-length": false,
     "space-before-function-paren": false,
     "ter-indent": [true, 2],
+    "jsx-no-multiline-js": false,
     "whitespace": [
       true,
       "check-branch",
@@ -40,7 +41,7 @@
       }
     ],
     "no-submodule-imports": [
-      true, 
+      true,
       "react-electron-web-view"
     ]
   }
