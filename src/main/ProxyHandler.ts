@@ -26,7 +26,11 @@ class ProxyHandler {
     });
   }
 
-  public startServer = (opt:IServerOptions, callback:IReqResReceivers) => {
+  public startServer = (
+    opt:IServerOptions,
+    callback:IReqResReceivers,
+    listener:(success:boolean, port?:number, error?:any) => void,
+  ) => {
     try {
       const options:IProxyOptions = {
         onError: () => {
@@ -50,11 +54,21 @@ class ProxyHandler {
 
       this.httpServer = this.expressApp.listen(opt.port, () => {
         console.log("Server Started");
+        listener(true, opt.port, undefined);
         this.isRunning = true;
       });
     } catch (error) {
+      listener(false, undefined, error);
       console.log("Error", error);
     }
+  }
+
+  public getServerStatus():any {
+    if (!this.isRunning || !this.httpServer) {
+      return false;
+    }
+
+    return this.httpServer.address();
   }
 
   public stopServer = () => {
