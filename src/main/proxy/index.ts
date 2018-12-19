@@ -10,7 +10,7 @@ import resolver from "./request_resolver";
 
 // tslint:disable-next-line:no-var-requires
 // tslint:disable-next-line:no-var-requires
-const proxyLib:any = require("./proxy");
+const proxyLib:any = require("./proxy.jlib");
 
 const app:Application = express();
 

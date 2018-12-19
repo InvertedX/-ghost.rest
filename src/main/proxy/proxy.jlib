@@ -1,12 +1,12 @@
 var _ = require('lodash')
 var httpProxy = require('http-proxy')
-var configFactory = require('./config-factory')
-var handlers = require('./handlers')
-var contextMatcher = require('./context-matcher')
-var PathRewriter = require('./path-rewriter')
-var Router = require('./router')
-var logger = require('./logger').getInstance()
-var getArrow = require('./logger').getArrow
+var configFactory = require('./config-factory.jlib')
+var handlers = require('./handlers.jlib')
+var contextMatcher = require('./context-matcher.jlib')
+var PathRewriter = require('./path-rewriter.jlib')
+var Router = require('./router.jlib')
+var logger = require('./logger.jlib').getInstance()
+var getArrow = require('./logger.jlib').getArrow
 
 module.exports = HttpProxyMiddleware
 

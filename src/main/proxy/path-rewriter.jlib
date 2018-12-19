@@ -1,6 +1,6 @@
 var _ = require('lodash')
-var logger = require('./logger').getInstance()
-var ERRORS = require('./errors')
+var logger = require('./logger.jlib').getInstance()
+var ERRORS = require('./errors.jlib')
 
 module.exports = {
   create: createPathRewriter

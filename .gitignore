@@ -264,3 +264,7 @@ dist/
 electron/
 package-lock.json
 yarn.lock
+
+*.map
+src/*.js
+*.js

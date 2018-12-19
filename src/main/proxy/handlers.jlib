@@ -1,5 +1,5 @@
 var _ = require('lodash')
-var logger = require('./logger').getInstance()
+var logger = require('./logger.jlib').getInstance()
 
 module.exports = {
   init: init,

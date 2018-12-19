@@ -13,6 +13,10 @@ class AppHomePage extends React.Component<{ appState:StoreRoot }, {}> {
   public render() {
     const { serverHandler, requestStore } = this.props.appState;
     const { requests, responses } = requestStore;
+
+    // tslint:disable-next-line:no-string-literal
+    window["storeS"] = this.props.appState;
+
     return (
       <div>
         <h2>Ghost Rest</h2>

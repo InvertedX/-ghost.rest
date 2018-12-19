@@ -1,7 +1,7 @@
 var _ = require('lodash')
 var url = require('url')
-var ERRORS = require('./errors')
-var logger = require('./logger').getInstance()
+var ERRORS = require('./errors.jlib')
+var logger = require('./logger.jlib').getInstance()
 
 module.exports = {
   createConfig: createConfig

@@ -3,6 +3,7 @@ import { Event, WebContents } from "electron";
 import {
   M2R_ON_REQUEST,
   M2R_ON_RESPONSE,
+  R2M_SERVER_STATUS,
   R2M_START_SERVER,
   R2M_STOP_SEVER,
 } from "../../shared/ipc.events";
@@ -11,14 +12,13 @@ import ProxyHandler, { IReqResReceivers } from "../ProxyHandler";
 import { AbstractStoreHandler } from "./AbstractStoreHandler";
 
 class ServerStore extends AbstractStoreHandler {
-  private counter = 0;
   private proxyHandler:ProxyHandler = new ProxyHandler();
   public constructor(wc:WebContents) {
     super(wc);
   }
   public onStartServer = (handler:(url?:string) => void) => {
     handler();
-    this.sendM2R(R2M_START_SERVER, this.counterDeltaString);
+    this.sendM2R(R2M_START_SERVER, {});
   }
 
   public onStopeServer = (handler:() => void) => {
@@ -36,29 +36,38 @@ class ServerStore extends AbstractStoreHandler {
   public register = () => {
     this.onR2m(R2M_START_SERVER, this.startServer);
     this.onR2m(R2M_STOP_SEVER, this.stopServer);
+    this.onR2m(R2M_SERVER_STATUS, this.getServerStatus);
   }
 
-  public startServer = () => {
-    console.log("Startin Server--->");
+  public getServerStatus = (ipc, event, arg) => {
+    const status = this.proxyHandler.getServerStatus();
+    this.sendR2mReply(ipc, event, status);
+  }
+
+  public startServer = (ipc:string, event:Event, argOptions:any) => {
     const options:IServerOptions = {
-      port: 4000,
+      port: 3000,
       url: "http://httpbin.org",
     };
+
     const reqResHandlers:IReqResReceivers = {
       request: this.onRequest,
       response: this.onResponse,
     };
-    this.proxyHandler.startServer(options, reqResHandlers);
+    this.proxyHandler.startServer(
+      options,
+      reqResHandlers,
+      (success, port, error:any) => {
+        this.sendR2mReply(ipc, event, {
+          error,
+          success,
+        });
+      },
+    );
   }
 
   public stopServer = () => {
     this.proxyHandler.stopServer();
-  }
-
-  private counterDeltaString = (ipc:string, event:Event, arg:any) => {
-    const delta:number = Number(arg as string);
-    this.counter += delta;
-    this.sendR2mReply(ipc, event, this.counter);
   }
 }
 

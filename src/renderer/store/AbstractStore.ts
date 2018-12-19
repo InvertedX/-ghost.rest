@@ -60,13 +60,13 @@ abstract class AbstractStore {
     ipc:string,
     handler:((ipc:string, event:Event, arg:any) => void),
   ) => {
-    if (ipc.indexOf("r2m-") !== 0) {
+    if (ipc.indexOf("R2M-") !== 0) {
       throw new Error("invalid channel name for <" + ipc + ">");
     }
-    if (ipc.substr(-"-reply".length) === "-reply") {
+    if (ipc.substr(-"-REPLY".length) === "-REPLY") {
       throw new Error("invalid channel name for <" + ipc + ">");
     }
-    ipcRenderer.on(ipc + "-reply", (event:Event, arg:any) => {
+    ipcRenderer.on(ipc + "-REPLY", (event:Event, arg:any) => {
       handler(ipc, event, arg);
     });
   }

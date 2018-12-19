@@ -2,7 +2,7 @@ var _ = require('lodash')
 var url = require('url')
 var isGlob = require('is-glob')
 var micromatch = require('micromatch')
-var ERRORS = require('./errors')
+var ERRORS = require('./errors.jlib')
 
 module.exports = {
   match: matchContext
