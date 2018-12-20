@@ -33,10 +33,10 @@ app.on("ready", () => {
 });
 
 function createWindow() {
-  // { width: 1024, height: 728 }
+  //
   // const { width, height } = screen.getPrimaryDisplay().workAreaSize;
   // const win = new BrowserWindow({ width, height });
-  const win = new BrowserWindow();
+  const win = new BrowserWindow({ width: 1200, height: 728 });
   storeRootHandler.register(win.webContents);
 
   if (nodeEnv === "development") {

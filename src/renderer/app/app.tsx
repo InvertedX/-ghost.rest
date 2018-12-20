@@ -3,9 +3,11 @@ import { Provider } from "mobx-react";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { HashRouter, Route } from "react-router-dom";
-import { AppHomePage } from "../components/AppHomePage";
+import { ThemeProvider } from "styled-components";
+import { Home } from "../components/Home";
 import "../scss/app.global.scss";
 import { StoreRoot } from "../store";
+import theme from "../theme";
 
 configure({
   enforceActions: "observed",
@@ -14,12 +16,14 @@ configure({
 const stores = new StoreRoot();
 
 ReactDOM.render(
-  <Provider appState={stores}>
-    <HashRouter>
-      <div className="app">
-        <Route exact={true} path="/" component={AppHomePage} />
-      </div>
-    </HashRouter>
-  </Provider>,
+  <ThemeProvider theme={theme}>
+    <Provider appState={stores}>
+      <HashRouter>
+        <div className="app">
+          <Route exact={true} path="/" component={Home} />
+        </div>
+      </HashRouter>
+    </Provider>
+  </ThemeProvider>,
   document.getElementById("app-root"),
 );

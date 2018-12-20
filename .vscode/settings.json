@@ -7,5 +7,8 @@
         "**/*.js.map": true,
         "**/*.js": {"when": "$(basename).ts"}
     },
+    "files.associations": {
+        "*.jlib": "javascript"
+    },
     "eslint.enable": true
 }
