@@ -4,17 +4,12 @@ import SplitPane from "react-split-pane";
 import styled from "styled-components";
 import { StoreRoot } from "../../store";
 import Sidebar from "../Sidebar";
+import TopNav from "../TopNav";
 import ViewerPane from "./ViewerPane";
-
-const TopSection = styled.div`
-  border-bottom: 1px solid ${(props) => props.theme.secondary};
-  background-color: ${(props) => props.theme.main};
-  flex: 1;
-`;
 
 const PaneContainer = styled.div`
   background-color: #282a36;
-  flex: 14;
+  flex: 2;
 `;
 
 @inject("appState")
@@ -38,9 +33,7 @@ class Home extends React.Component<{ appState:StoreRoot }, { width:number }> {
 
     return (
       <div className="app-container">
-        <TopSection>
-          <p>slkdl</p>
-        </TopSection>
+        <TopNav />
         <PaneContainer>
           <SplitPane
             split="vertical"

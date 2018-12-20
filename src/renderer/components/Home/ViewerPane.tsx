@@ -26,11 +26,11 @@ class ViewerPane extends React.PureComponent<
         defaultSize={"50%"}
       >
         <div style={{ paddingRight: 4 }}>
-          <div style={{ height: 80 }} />
+          {/* <div style={{ height: 80 }} /> */}
           <Editor width={this.state.left} />
         </div>
         <div>
-          <div style={{ height: 80 }} />
+          {/* <div style={{ height: 80 }} /> */}
           <Editor width={this.state.right} />
         </div>
       </SplitPane>

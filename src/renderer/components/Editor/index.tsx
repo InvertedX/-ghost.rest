@@ -9,8 +9,6 @@ import AceEditor from "react-ace";
 import "../../theme/ace_onedark.jlib";
 
 const code = `
-
-
 {
   "slideshow": {
     "author": "Yours Truly",
@@ -73,47 +71,6 @@ const code = `
         "type": "all"
       },
       {
-        "title": "Wake up to WonderWidgets!",
-        "type": "all"
-      },
-      {
-        "title": "Wake up to WonderWidgets!",
-        "type": "all"
-      },
-      {
-        "title": "Wake up to WonderWidgets!",
-        "type": "all"
-      },
-      {
-        "title": "Wake up to WonderWidgets!",
-        "type": "all"
-      },
-      {
-        "title": "Wake up to WonderWidgets!",
-        "type": "all"
-      },
-      {
-        "title": "Wake up to WonderWidgets!",
-        "type": "all"
-      },
-      {
-        "title": "Wake up to WonderWidgets!",
-        "type": "all"
-      },
-      {
-        "title": "Wake up to WonderWidgets!",
-        "type": "all"
-      },
-      {
-        "title": "Wake up to WonderWidgets!",
-        "type": "all"
-      },
-      {
-        "title": "Wake up to WonderWidgets!",
-        "type": "all"
-      },
-
-      {
         "items": [
           "Why <em>WonderWidgets</em> are great",
           "Who <em>buys</em> WonderWidgets"
@@ -155,7 +112,7 @@ class Editor extends React.Component<any, { dimensions:any }> {
         mode="json"
         style={{ paddingBottom: 12 }}
         onLoad={this.onEditorLoaded}
-        height="80vh"
+        height="90vh"
         width={"auto"}
         value={code}
         theme="one-dark"

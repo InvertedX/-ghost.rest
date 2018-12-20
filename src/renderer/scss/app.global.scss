@@ -3,14 +3,21 @@
 
 $dark-gray1: #182026 !default;
 $dark-gray2: #202b33 !default;
-$dark-gray3: #293742 !default;
-$dark-gray4: #30404d !default;
+$dark-gray3: #222e38 !default;
+$dark-gray4: #29343e !default;
 $dark-gray5: #394b59 !default;
 
 @import "@blueprintjs/core/src/blueprint.scss";
 
 :global {
   @import './normalize.css';
+
+  .bp3-button-group.bp3-minimal .bp3-button:hover {
+    box-shadow: none;
+    background: rgba(167, 182, 194, 0.3);
+    text-decoration: none;
+    color: #ffff;
+  }
 }
 
 body {
@@ -21,4 +28,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column
+}
+input, button, textarea, :focus {
+  outline: none;
 }
