@@ -18,12 +18,12 @@ class RequestStore extends AbstractStore {
 
   @action
   public addRequest(request:any) {
-    this.requests = [...this.requests, request];
+    this.requests = [request, ...this.requests];
   }
 
   @action
   public addResponse(response:any) {
-    this.responses = [...this.responses, response];
+    this.responses = [response, ...this.responses];
   }
 }
 

@@ -44,12 +44,10 @@ class ServerStore extends AbstractStoreHandler {
     this.sendR2mReply(ipc, event, status);
   }
 
-  public startServer = (ipc:string, event:Event, argOptions:any) => {
-    const options:IServerOptions = {
-      port: 3000,
-      url: "http://httpbin.org",
-    };
-
+  public startServer = (ipc:string, event:Event, options:IServerOptions) => {
+    if (!options) {
+      return;
+    }
     const reqResHandlers:IReqResReceivers = {
       request: this.onRequest,
       response: this.onResponse,
@@ -66,8 +64,12 @@ class ServerStore extends AbstractStoreHandler {
     );
   }
 
-  public stopServer = () => {
+  public stopServer = (ipc:string, event:Event, argOptions:any) => {
     this.proxyHandler.stopServer();
+    this.sendR2mReply(ipc, event, {
+      error: "",
+      success: false,
+    });
   }
 }
 

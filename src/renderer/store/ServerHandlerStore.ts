@@ -7,9 +7,16 @@ import {
 import { IResponse, IServerOptions } from "../../shared/models";
 import { AbstractStore } from "./AbstractStore";
 
+interface IReplyStatus {
+  success:boolean;
+  error?:string;
+}
 class ServerHandlerStore extends AbstractStore {
-  @observable public currentTarget?:IServerOptions | null = null;
+  @observable public currentTarget:IServerOptions = { port: 80, url: "" };
   @observable public responses:IResponse[] = [];
+  @observable public running:boolean = false;
+
+  private callbackForSuccess?:() => void;
 
   constructor() {
     super();
@@ -18,17 +25,18 @@ class ServerHandlerStore extends AbstractStore {
   }
 
   @action
-  public setTargetServer = (target:IServerOptions) => {
-    this.currentTarget = target;
-  }
-
-  @action
-  public startServer = () => {
+  public startServer = (callbackForSuccess?:() => void) => {
+    this.callbackForSuccess = callbackForSuccess;
+    console.log("THIS TARGE", this.currentTarget);
     this.sendR2m(R2M_START_SERVER, this.currentTarget);
   }
 
-  public onStartServerReply = (ipc, event, payload) => {
-    console.log("GOT reply", payload);
+  @action
+  public onStartServerReply = (ipc, event, data:IReplyStatus) => {
+    this.running = data.success;
+    if (data.success === true) {
+      this.callbackForSuccess!();
+    }
   }
 
   @action
@@ -36,12 +44,22 @@ class ServerHandlerStore extends AbstractStore {
     this.sendR2m(R2M_SERVER_STATUS, this.currentTarget);
   }
 
-  public onStatusReply = (ipc, event, data) => {
-    console.log("GOT statuys", data, event, ipc);
+  @action
+  public onStatusReply = (ipc, event, data:IReplyStatus) => {
+    console.log("ONSTATUYS");
+    this.running = data.success;
+    if (data.success === true) {
+      this.callbackForSuccess!();
+    }
   }
 
   @action
-  public stopServer = (target:IServerOptions) => {
+  public setCurrentTarget = (target:IServerOptions) => {
+    this.currentTarget = target;
+  }
+
+  @action
+  public stopServer = () => {
     this.sendR2m(R2M_STOP_SEVER, {});
   }
 }

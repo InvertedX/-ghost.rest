@@ -33,7 +33,7 @@ class Home extends React.Component<{ appState:StoreRoot }, { width:number }> {
 
     return (
       <div className="app-container">
-        <TopNav />
+        <TopNav/>
         <PaneContainer>
           <SplitPane
             split="vertical"

@@ -17,7 +17,11 @@ const stores = new StoreRoot();
 
 ReactDOM.render(
   <ThemeProvider theme={theme}>
-    <Provider appState={stores}>
+    <Provider
+      appState={stores}
+      requestStore={stores.requestStore}
+      serverHandler={stores.serverHandler}
+    >
       <HashRouter>
         <div className="app">
           <Route exact={true} path="/" component={Home} />
